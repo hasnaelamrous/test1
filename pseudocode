@@ -1,0 +1,39 @@
+START
+
+// Step 1: Initialize counters
+SET length ← 0
+SET word_count ← 1
+SET vowel_count ← 0
+
+// Step 2: Input sentence
+PRINT "Enter a sentence ending with a period:"
+READ sentence
+
+// Step 3: Check if sentence ends with a period
+IF last character of sentence ≠ '.' THEN
+    PRINT "Error: The sentence must end with a period."
+    STOP
+END IF
+
+// Step 4: Loop through each character
+FOR each character ch in sentence DO
+    INCREMENT length by 1
+
+    // Step 5: Check for space to count words
+    IF ch = ' ' THEN
+        INCREMENT word_count by 1
+    END IF
+
+    // Step 6: Check for vowels (both uppercase and lowercase)
+    IF ch = 'a' OR ch = 'e' OR ch = 'i' OR ch = 'o' OR ch = 'u' OR
+       ch = 'A' OR ch = 'E' OR ch = 'I' OR ch = 'O' OR ch = 'U' THEN
+        INCREMENT vowel_count by 1
+    END IF
+END FOR
+
+// Step 7: Output results
+PRINT "Length of the sentence: ", length
+PRINT "Number of words: ", word_count
+PRINT "Number of vowels: ", vowel_count
+
+END
