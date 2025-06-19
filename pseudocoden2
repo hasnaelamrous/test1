@@ -1,0 +1,100 @@
+ALGORITHM distinct_sum_sets
+VAR
+    set1, set2 : ARRAY_OF INTEGER[50]
+    n1, n2, i, j, sum : INTEGER
+    found : BOOLEAN
+BEGIN
+
+    Read(n1)
+    FOR i FROM 0 TO n1 - 1 DO
+        Read(set1[i])
+    END_FOR
+
+    Read(n2)
+    FOR i FROM 0 TO n2 - 1 DO
+        Read(set2[i])
+    END_FOR
+
+    sum := 0
+
+
+    FOR i FROM 0 TO n1 - 1 DO
+        found := FALSE
+        FOR j FROM 0 TO n2 - 1 DO
+            IF set1[i] = set2[j] THEN
+                found := TRUE
+            END_IF
+        END_FOR
+        IF NOT found THEN
+            sum := sum + set1[i]
+        END_IF
+    END_FOR
+
+
+    FOR i FROM 0 TO n2 - 1 DO
+        found := FALSE
+        FOR j FROM 0 TO n1 - 1 DO
+            IF set2[i] = set1[j] THEN
+                found := TRUE
+            END_IF
+        END_FOR
+        IF NOT found THEN
+            sum := sum + set2[i]
+        END_IF
+    END_FOR
+
+    Write("Sum of distinct elements = ", sum)
+END
+
+
+
+
+
+
+
+
+
+
+
+
+
+FUNCTION dot_product(v1, v2 : ARRAY_OF INTEGER, n : INTEGER) : INTEGER
+VAR
+    i, result : INTEGER
+BEGIN
+    result := 0
+    FOR i FROM 0 TO n - 1 DO
+        result := result + v1[i] * v2[i]
+    END_FOR
+    RETURN result
+END
+
+ALGORITHM check_orthogonal_vectors
+VAR
+    v1, v2 : ARRAY_OF INTEGER[50]
+    n, i, ps : INTEGER
+BEGIN
+    Write("Enter the size of the vectors:")
+    Read(n)
+
+    Write("Enter elements of vector v1:")
+    FOR i FROM 0 TO n - 1 DO
+        Read(v1[i])
+    END_FOR
+
+    Write("Enter elements of vector v2:")
+    FOR i FROM 0 TO n - 1 DO
+        Read(v2[i])
+    END_FOR
+
+    // Appel de la fonction dot_product
+    ps := dot_product(v1, v2, n)
+
+    Write("Dot product = ", ps)
+
+    IF ps = 0 THEN
+        Write("The vectors are orthogonal.")
+    ELSE
+        Write("The vectors are NOT orthogonal.")
+    END_IF
+END
